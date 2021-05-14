@@ -25,6 +25,7 @@ func TestPerf(t *testing.T) {
 				Values:   []benchfmt.Value{
 					{
 						Value: 1291018,
+						Unit:  "val",
 					},
 				},
 			},

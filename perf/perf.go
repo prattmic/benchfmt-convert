@@ -52,6 +52,7 @@ func Line(s string) (benchfmt.Result, bool) {
 
 	if m := unitlessRe.FindStringSubmatch(s); len(m) > 0 {
 		value = m[1]
+		unit = "val"
 		name = m[2]
 	} else if m := unitRe.FindStringSubmatch(s); len(m) > 0 {
 		value = m[1]
