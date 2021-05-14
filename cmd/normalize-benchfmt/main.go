@@ -6,9 +6,17 @@ import (
 	"log"
 	"os"
 
+	"github.com/prattmic/benchfmt-convert/gtest"
 	"github.com/prattmic/benchfmt-convert/perf"
 	"golang.org/x/perf/v2/benchfmt"
 )
+
+type parser func(string) (benchfmt.Result, bool)
+
+var formats = []parser{
+	gtest.Line,
+	perf.Line,
+}
 
 func run() error {
 	if len(os.Args) > 2 {
@@ -30,11 +38,16 @@ func run() error {
 	for s.Scan() {
 		line := s.Text()
 
-		r, ok := perf.Line(line)
-		if ok {
+		for _, fn := range formats {
+			r, ok := fn(line)
+			if !ok {
+				continue
+			}
+
 			if err := w.Write(&r); err != nil {
 				return fmt.Errorf("error writing %+v: %v", r, err)
 			}
+			break
 		}
 	}
 
