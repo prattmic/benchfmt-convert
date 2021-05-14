@@ -1,4 +1,4 @@
-module github.com/prattmic/benchfmt
+module github.com/prattmic/benchfmt-convert
 
 go 1.16
 
