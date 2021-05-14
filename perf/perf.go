@@ -1,3 +1,4 @@
+// Package perf converts `perf stat` output to benchfmt.
 package perf
 
 import (
@@ -18,6 +19,18 @@ var (
 	// Stat with unit. Format:
 	//               1.11 msec task-clock                #    0.001 CPUs utilized
 	unitRe = regexp.MustCompile(`^\s*([0-9,\.]+)\s+([a-z]+)\s+([a-z0-9_.-]+)\s+(#.*)?$`)
+
+	// Total elapsed wall time. Format:
+	//      1656.917143299 seconds time elapsed
+	wallRe = regexp.MustCompile(`^\s*([0-9\.]+)\s+seconds time elapsed$`)
+
+	// Total elapsed user time. Format:
+	//      1656.917143299 seconds user
+	userRe = regexp.MustCompile(`^\s*([0-9\.]+)\s+seconds user$`)
+
+	// Total elapsed system time. Format:
+	//      1656.917143299 seconds sys
+	sysRe = regexp.MustCompile(`^\s*([0-9\.]+)\s+seconds sys$`)
 )
 
 // capitalize capitalizes the first character in s.
@@ -44,6 +57,18 @@ func Line(s string) (benchfmt.Result, bool) {
 		value = m[1]
 		unit = m[2]
 		name = m[3]
+	} else if m := wallRe.FindStringSubmatch(s); len(m) > 0 {
+		value = m[1]
+		unit = "sec"
+		name = "wall-time"
+	} else if m := userRe.FindStringSubmatch(s); len(m) > 0 {
+		value = m[1]
+		unit = "sec"
+		name = "user-time"
+	} else if m := sysRe.FindStringSubmatch(s); len(m) > 0 {
+		value = m[1]
+		unit = "sec"
+		name = "system-time"
 	}
 
 	if value == "" {

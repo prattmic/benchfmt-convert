@@ -44,6 +44,51 @@ func TestPerf(t *testing.T) {
 				},
 			},
 		},
+		{
+			name:  "wall",
+			line:  "      1656.917143299 seconds time elapsed",
+			match: true,
+			want:  benchfmt.Result{
+				FullName: []byte("BenchmarkWall-time"),
+				Iters:    1,
+				Values:   []benchfmt.Value{
+					{
+						Value: 1656.917143299,
+						Unit:  "sec",
+					},
+				},
+			},
+		},
+		{
+			name:  "user",
+			line:  "      1656.917143299 seconds user",
+			match: true,
+			want:  benchfmt.Result{
+				FullName: []byte("BenchmarkUser-time"),
+				Iters:    1,
+				Values:   []benchfmt.Value{
+					{
+						Value: 1656.917143299,
+						Unit:  "sec",
+					},
+				},
+			},
+		},
+		{
+			name:  "system",
+			line:  "      1656.917143299 seconds sys",
+			match: true,
+			want:  benchfmt.Result{
+				FullName: []byte("BenchmarkSystem-time"),
+				Iters:    1,
+				Values:   []benchfmt.Value{
+					{
+						Value: 1656.917143299,
+						Unit:  "sec",
+					},
+				},
+			},
+		},
 	}
 
 	for _, tc := range tests {
