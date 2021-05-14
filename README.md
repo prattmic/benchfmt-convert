@@ -10,4 +10,4 @@ log file and output their benchfmt equivalents.
 Supported formats:
 
  * `perf stat`
- * Google Benchmark (coming soon)
+ * googletest benchmarks
