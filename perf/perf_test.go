@@ -43,3 +43,41 @@ func TestPerf(t *testing.T) {
 		})
 	}
 }
+
+func TestCapitalize(t *testing.T) {
+	tests := []struct{
+		name  string
+		input string
+		want  string
+	}{
+		{
+			name:  "empty",
+			input: "",
+			want:  "",
+		},
+		{
+			name:  "one",
+			input: "a",
+			want:  "A",
+		},
+		{
+			name:  "multi",
+			input: "abcd",
+			want:  "Abcd",
+		},
+		{
+			name:  "unicode",
+			input: "ā",
+			want:  "Ā",
+		},
+	}
+
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			got := capitalize(tc.input)
+			if got != tc.want {
+				t.Errorf("capitalize(%q) got %q want %q", tc.input, got, tc.want)
+			}
+		})
+	}
+}
