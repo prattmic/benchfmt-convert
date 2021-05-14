@@ -29,6 +29,21 @@ func TestPerf(t *testing.T) {
 				},
 			},
 		},
+		{
+			name:  "unit",
+			line:  "               1.11 msec task-clock                #    0.001 CPUs utilized",
+			match: true,
+			want:  benchfmt.Result{
+				FullName: []byte("BenchmarkTask-clock"),
+				Iters:    1,
+				Values:   []benchfmt.Value{
+					{
+						Value: 1.11,
+						Unit:  "msec",
+					},
+				},
+			},
+		},
 	}
 
 	for _, tc := range tests {

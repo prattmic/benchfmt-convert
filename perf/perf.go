@@ -14,11 +14,11 @@ var (
 	// Unitless stat. Format:
 	//          1,291,018      cycles                    #    1.167 GHz
 	unitlessRe = regexp.MustCompile(`^\s*([0-9,\.]+)\s+([a-z0-9_.-]+)\s+(#.*)?$`)
-)
 
-// Stat with unit. Format:
-//               1.11 msec task-clock                #    0.001 CPUs utilized
-// /^\s+[0-9,\.]+\s+[a-z]+\s+[a-z0-9_.-]+\s+(#.*)?$/ {
+	// Stat with unit. Format:
+	//               1.11 msec task-clock                #    0.001 CPUs utilized
+	unitRe = regexp.MustCompile(`^\s*([0-9,\.]+)\s+([a-z]+)\s+([a-z0-9_.-]+)\s+(#.*)?$`)
+)
 
 // capitalize capitalizes the first character in s.
 func capitalize(s string) string {
@@ -35,29 +35,39 @@ func capitalize(s string) string {
 }
 
 func Line(s string) (benchfmt.Result, bool) {
+	var name, value, unit string
+
 	if m := unitlessRe.FindStringSubmatch(s); len(m) > 0 {
-		value := m[1]
-		value = strings.ReplaceAll(value, ",", "") // strip commas
-		v, err := strconv.ParseFloat(value, 64)
-		if err != nil {
-			// regexp says this is a number, conversion really shouldn't fail.
-			panic(fmt.Sprintf("failed to parse %q as float64: %v", value, err))
-		}
-
-		name := m[2]
-		name = "Benchmark" + capitalize(name)
-
-		r := benchfmt.Result{
-			FullName: []byte(name),
-			Iters:    1,
-			Values:   []benchfmt.Value{
-				{
-					Value: v,
-				},
-			},
-		}
-		return r, true
+		value = m[1]
+		name = m[2]
+	} else if m := unitRe.FindStringSubmatch(s); len(m) > 0 {
+		value = m[1]
+		unit = m[2]
+		name = m[3]
 	}
 
-	return benchfmt.Result{}, false
+	if value == "" {
+		return benchfmt.Result{}, false
+	}
+
+	value = strings.ReplaceAll(value, ",", "") // strip commas
+	v, err := strconv.ParseFloat(value, 64)
+	if err != nil {
+		// regexp says this is a number, conversion really shouldn't fail.
+		panic(fmt.Sprintf("failed to parse %q as float64: %v", value, err))
+	}
+
+	name = "Benchmark" + capitalize(name)
+
+	r := benchfmt.Result{
+		FullName: []byte(name),
+		Iters:    1,
+		Values:   []benchfmt.Value{
+			{
+				Value: v,
+				Unit:  unit,
+			},
+		},
+	}
+	return r, true
 }
