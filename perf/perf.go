@@ -88,7 +88,7 @@ func Line(s string) (benchfmt.Result, bool) {
 	r := benchfmt.Result{
 		FullName: []byte(name),
 		Iters:    1,
-		Values:   []benchfmt.Value{
+		Values: []benchfmt.Value{
 			{
 				Value: v,
 				Unit:  unit,

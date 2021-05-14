@@ -11,7 +11,7 @@ import (
 ///^BM_.*\s+[0-9]+\s+.*\s+[0-9]+\s+.*\s+[0-9]+$/ {
 
 func TestGTest(t *testing.T) {
-	tests := []struct{
+	tests := []struct {
 		name  string
 		line  string
 		match bool
@@ -21,10 +21,10 @@ func TestGTest(t *testing.T) {
 			name:  "typical",
 			line:  "BM_Stat/64/real_time       16770 ns        16593 ns        42186",
 			match: true,
-			want:  benchfmt.Result{
+			want: benchfmt.Result{
 				FullName: []byte("BenchmarkStat/64/real_time"),
 				Iters:    42186,
-				Values:   []benchfmt.Value{
+				Values: []benchfmt.Value{
 					{
 						Value: 16770,
 						Unit:  "ns",

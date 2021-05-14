@@ -9,7 +9,7 @@ import (
 )
 
 func TestPerf(t *testing.T) {
-	tests := []struct{
+	tests := []struct {
 		name  string
 		line  string
 		match bool
@@ -19,10 +19,10 @@ func TestPerf(t *testing.T) {
 			name:  "unitless",
 			line:  "          1,291,018      cycles                    #    1.167 GHz",
 			match: true,
-			want:  benchfmt.Result{
+			want: benchfmt.Result{
 				FullName: []byte("BenchmarkCycles"),
 				Iters:    1,
-				Values:   []benchfmt.Value{
+				Values: []benchfmt.Value{
 					{
 						Value: 1291018,
 						Unit:  "val",
@@ -34,10 +34,10 @@ func TestPerf(t *testing.T) {
 			name:  "unit",
 			line:  "               1.11 msec task-clock                #    0.001 CPUs utilized",
 			match: true,
-			want:  benchfmt.Result{
+			want: benchfmt.Result{
 				FullName: []byte("BenchmarkTask-clock"),
 				Iters:    1,
-				Values:   []benchfmt.Value{
+				Values: []benchfmt.Value{
 					{
 						Value: 1.11,
 						Unit:  "msec",
@@ -49,10 +49,10 @@ func TestPerf(t *testing.T) {
 			name:  "wall",
 			line:  "      1656.917143299 seconds time elapsed",
 			match: true,
-			want:  benchfmt.Result{
+			want: benchfmt.Result{
 				FullName: []byte("BenchmarkWall-time"),
 				Iters:    1,
-				Values:   []benchfmt.Value{
+				Values: []benchfmt.Value{
 					{
 						Value: 1656.917143299,
 						Unit:  "sec",
@@ -64,10 +64,10 @@ func TestPerf(t *testing.T) {
 			name:  "user",
 			line:  "      1656.917143299 seconds user",
 			match: true,
-			want:  benchfmt.Result{
+			want: benchfmt.Result{
 				FullName: []byte("BenchmarkUser-time"),
 				Iters:    1,
-				Values:   []benchfmt.Value{
+				Values: []benchfmt.Value{
 					{
 						Value: 1656.917143299,
 						Unit:  "sec",
@@ -79,10 +79,10 @@ func TestPerf(t *testing.T) {
 			name:  "system",
 			line:  "      1656.917143299 seconds sys",
 			match: true,
-			want:  benchfmt.Result{
+			want: benchfmt.Result{
 				FullName: []byte("BenchmarkSystem-time"),
 				Iters:    1,
-				Values:   []benchfmt.Value{
+				Values: []benchfmt.Value{
 					{
 						Value: 1656.917143299,
 						Unit:  "sec",
@@ -106,7 +106,7 @@ func TestPerf(t *testing.T) {
 }
 
 func TestCapitalize(t *testing.T) {
-	tests := []struct{
+	tests := []struct {
 		name  string
 		input string
 		want  string
