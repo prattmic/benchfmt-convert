@@ -22,7 +22,7 @@ func TestGTest(t *testing.T) {
 			line:  "BM_Stat/64/real_time       16770 ns        16593 ns        42186",
 			match: true,
 			want: benchfmt.Result{
-				FullName: []byte("BenchmarkStat/64/real_time"),
+				FullName: []byte("Stat/64/real_time"),
 				Iters:    42186,
 				Values: []benchfmt.Value{
 					{

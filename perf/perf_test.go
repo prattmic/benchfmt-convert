@@ -20,7 +20,7 @@ func TestPerf(t *testing.T) {
 			line:  "          1,291,018      cycles                    #    1.167 GHz",
 			match: true,
 			want: benchfmt.Result{
-				FullName: []byte("BenchmarkCycles"),
+				FullName: []byte("Cycles"),
 				Iters:    1,
 				Values: []benchfmt.Value{
 					{
@@ -35,7 +35,7 @@ func TestPerf(t *testing.T) {
 			line:  "               1.11 msec task-clock                #    0.001 CPUs utilized",
 			match: true,
 			want: benchfmt.Result{
-				FullName: []byte("BenchmarkTask-clock"),
+				FullName: []byte("Task-clock"),
 				Iters:    1,
 				Values: []benchfmt.Value{
 					{
@@ -50,7 +50,7 @@ func TestPerf(t *testing.T) {
 			line:  "      1656.917143299 seconds time elapsed",
 			match: true,
 			want: benchfmt.Result{
-				FullName: []byte("BenchmarkWall-time"),
+				FullName: []byte("Wall-time"),
 				Iters:    1,
 				Values: []benchfmt.Value{
 					{
@@ -65,7 +65,7 @@ func TestPerf(t *testing.T) {
 			line:  "      1656.917143299 seconds user",
 			match: true,
 			want: benchfmt.Result{
-				FullName: []byte("BenchmarkUser-time"),
+				FullName: []byte("User-time"),
 				Iters:    1,
 				Values: []benchfmt.Value{
 					{
@@ -80,7 +80,7 @@ func TestPerf(t *testing.T) {
 			line:  "      1656.917143299 seconds sys",
 			match: true,
 			want: benchfmt.Result{
-				FullName: []byte("BenchmarkSystem-time"),
+				FullName: []byte("System-time"),
 				Iters:    1,
 				Values: []benchfmt.Value{
 					{

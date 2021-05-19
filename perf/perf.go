@@ -83,10 +83,8 @@ func Line(s string) (benchfmt.Result, bool) {
 		panic(fmt.Sprintf("failed to parse %q as float64: %v", value, err))
 	}
 
-	name = "Benchmark" + capitalize(name)
-
 	r := benchfmt.Result{
-		FullName: []byte(name),
+		FullName: []byte(capitalize(name)),
 		Iters:    1,
 		Values: []benchfmt.Value{
 			{

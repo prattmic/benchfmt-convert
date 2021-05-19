@@ -22,7 +22,6 @@ func Line(s string) (benchfmt.Result, bool) {
 	}
 
 	name := m[1]
-	name = "Benchmark" + name
 
 	iters := m[4]
 	i, err := strconv.ParseUint(iters, 10, 64)
