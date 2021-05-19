@@ -38,16 +38,24 @@ func run() error {
 	for s.Scan() {
 		line := s.Text()
 
+		found := false
 		for _, fn := range formats {
 			r, ok := fn(line)
 			if !ok {
 				continue
 			}
+			found = true
 
 			if err := w.Write(&r); err != nil {
 				return fmt.Errorf("error writing %+v: %v", r, err)
 			}
 			break
+		}
+
+		// Include unmatched lines in output for context. benchstat
+		// ignores them.
+		if !found {
+			fmt.Println(line)
 		}
 	}
 
