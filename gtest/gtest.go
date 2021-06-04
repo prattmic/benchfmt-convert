@@ -12,7 +12,8 @@ import (
 var (
 	// Format:
 	// BM_Stat/64/real_time       16770 ns        16593 ns        42186
-	benchmarkRe = regexp.MustCompile(`^BM_(\S+)\s+([0-9]+) ns\s+([0-9]+) ns\s+([0-9]+)\s*$`)
+	// BM_LargeConsistent                 4.69           4.69   500000000
+	benchmarkRe = regexp.MustCompile(`^BM_(\S+)\s+([0-9\.]+)(?: ns)?\s+([0-9\.]+)(?: ns)?\s+([0-9]+)\s*$`)
 )
 
 func Line(s string) (benchfmt.Result, bool) {
@@ -36,24 +37,24 @@ func Line(s string) (benchfmt.Result, bool) {
 	}
 
 	wall := m[2]
-	w, err := strconv.ParseUint(wall, 10, 64)
+	w, err := strconv.ParseFloat(wall, 64)
 	if err != nil {
 		// regexp says this is a number, conversion really shouldn't fail.
-		panic(fmt.Sprintf("failed to parse %q as uint64: %v", wall, err))
+		panic(fmt.Sprintf("failed to parse %q as float: %v", wall, err))
 	}
 	r.Values = append(r.Values, benchfmt.Value{
-		Value: float64(w),
+		Value: w,
 		Unit:  "ns",
 	})
 
 	cpu := m[3]
-	c, err := strconv.ParseUint(cpu, 10, 64)
+	c, err := strconv.ParseFloat(cpu, 64)
 	if err != nil {
 		// regexp says this is a number, conversion really shouldn't fail.
-		panic(fmt.Sprintf("failed to parse %q as uint64: %v", cpu, err))
+		panic(fmt.Sprintf("failed to parse %q as float: %v", cpu, err))
 	}
 	r.Values = append(r.Values, benchfmt.Value{
-		Value: float64(c),
+		Value: c,
 		Unit:  "cpu-ns",
 	})
 

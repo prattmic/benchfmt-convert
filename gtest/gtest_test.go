@@ -55,6 +55,25 @@ func TestGTest(t *testing.T) {
 				},
 			},
 		},
+		{
+			name:  "no units",
+			line:  "BM_LargeConsistent                 4.69           4.69   500000000  ",
+			match: true,
+			want: benchfmt.Result{
+				FullName: []byte("LargeConsistent"),
+				Iters:    500000000,
+				Values: []benchfmt.Value{
+					{
+						Value: 4.69,
+						Unit:  "ns",
+					},
+					{
+						Value: 4.69,
+						Unit:  "cpu-ns",
+					},
+				},
+			},
+		},
 	}
 
 	for _, tc := range tests {
