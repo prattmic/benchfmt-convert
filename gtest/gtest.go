@@ -12,7 +12,7 @@ import (
 var (
 	// Format:
 	// BM_Stat/64/real_time       16770 ns        16593 ns        42186
-	benchmarkRe = regexp.MustCompile(`^BM_(\S+)\s+([0-9]+) ns\s+([0-9]+) ns\s+([0-9]+)$`)
+	benchmarkRe = regexp.MustCompile(`^BM_(\S+)\s+([0-9]+) ns\s+([0-9]+) ns\s+([0-9]+)\s*$`)
 )
 
 func Line(s string) (benchfmt.Result, bool) {
