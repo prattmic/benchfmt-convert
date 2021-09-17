@@ -13,7 +13,11 @@ var (
 	// Format:
 	// BM_Stat/64/real_time       16770 ns        16593 ns        42186
 	// BM_LargeConsistent                 4.69           4.69   500000000
-	benchmarkRe = regexp.MustCompile(`^BM_(\S+)\s+([0-9\.]+)(?: ns)?\s+([0-9\.]+)(?: ns)?\s+([0-9]+)\s*$`)
+	// BM_Read/1/real_time              3820 ns         2757 ns       184963 bytes_per_second=255.676k/s
+	//
+	// TODO(prattmic): Parse the user counters (bytes_per_second above).
+	// For now we just ignore them.
+	benchmarkRe = regexp.MustCompile(`^BM_(\S+)\s+([0-9\.]+)(?: ns)?\s+([0-9\.]+)(?: ns)?\s+([0-9]+).*$`)
 )
 
 func Line(s string) (benchfmt.Result, bool) {

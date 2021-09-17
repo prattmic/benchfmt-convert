@@ -74,6 +74,25 @@ func TestGTest(t *testing.T) {
 				},
 			},
 		},
+		{
+			name:  "user counters",
+			line:  "BM_Read/1/real_time              3820 ns         2757 ns       184963 bytes_per_second=255.676k/s",
+			match: true,
+			want: benchfmt.Result{
+				FullName: []byte("Read/1/real_time"),
+				Iters:    184963,
+				Values: []benchfmt.Value{
+					{
+						Value: 3820,
+						Unit:  "ns",
+					},
+					{
+						Value: 2757,
+						Unit:  "cpu-ns",
+					},
+				},
+			},
+		},
 	}
 
 	for _, tc := range tests {
