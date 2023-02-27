@@ -31,11 +31,41 @@ func TestPerf(t *testing.T) {
 			},
 		},
 		{
+			name:  "unitless-suffix",
+			line:  "          1,291,018      cycles:u                    #    1.167 GHz",
+			match: true,
+			want: benchfmt.Result{
+				FullName: []byte("Cycles:u"),
+				Iters:    1,
+				Values: []benchfmt.Value{
+					{
+						Value: 1291018,
+						Unit:  "val",
+					},
+				},
+			},
+		},
+		{
 			name:  "unit",
 			line:  "               1.11 msec task-clock                #    0.001 CPUs utilized",
 			match: true,
 			want: benchfmt.Result{
 				FullName: []byte("Task-clock"),
+				Iters:    1,
+				Values: []benchfmt.Value{
+					{
+						Value: 1.11,
+						Unit:  "msec",
+					},
+				},
+			},
+		},
+		{
+			name:  "unit-suffix",
+			line:  "               1.11 msec task-clock:u                #    0.001 CPUs utilized",
+			match: true,
+			want: benchfmt.Result{
+				FullName: []byte("Task-clock:u"),
 				Iters:    1,
 				Values: []benchfmt.Value{
 					{
