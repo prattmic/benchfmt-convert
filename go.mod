@@ -5,7 +5,7 @@ go 1.17
 replace golang.org/x/perf/v2 => github.com/aclements/go-perf-v2/v2 v2.0.0-20201114230402-4cc84854ceef
 
 require (
-	github.com/google/go-cmp v0.5.5
+	github.com/google/go-cmp v0.5.9
 	golang.org/x/perf/v2 v2.0.0-00010101000000-000000000000
 )
 
