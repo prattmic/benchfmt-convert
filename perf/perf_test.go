@@ -54,8 +54,8 @@ func TestPerf(t *testing.T) {
 				Iters:    1,
 				Values: []benchfmt.Value{
 					{
-						Value: 1.11,
-						Unit:  "msec",
+						Value: 0.00111,
+						Unit:  "sec",
 					},
 				},
 			},
@@ -69,8 +69,8 @@ func TestPerf(t *testing.T) {
 				Iters:    1,
 				Values: []benchfmt.Value{
 					{
-						Value: 1.11,
-						Unit:  "msec",
+						Value: 0.00111,
+						Unit:  "sec",
 					},
 				},
 			},

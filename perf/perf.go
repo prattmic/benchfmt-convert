@@ -83,6 +83,13 @@ func Line(s string) (benchfmt.Result, bool) {
 		panic(fmt.Sprintf("failed to parse %q as float64: %v", value, err))
 	}
 
+	// perf outputs clock events in milliseconds. benchstat doesn't
+	// understand "msec" (only "sec" and "ns"), so convert.
+	if unit == "msec" {
+		v /= 1000
+		unit = "sec"
+	}
+
 	r := benchfmt.Result{
 		FullName: []byte(capitalize(name)),
 		Iters:    1,
