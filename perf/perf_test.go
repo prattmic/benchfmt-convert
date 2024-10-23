@@ -61,6 +61,21 @@ func TestPerf(t *testing.T) {
 			},
 		},
 		{
+			name:  "unitless-capital-sampled",
+			line:  "        32,163,995      L1-icache-load-misses                                                   (72.21%)",
+			match: true,
+			want: benchfmt.Result{
+				FullName: []byte("L1-icache-load-misses"),
+				Iters:    1,
+				Values: []benchfmt.Value{
+					{
+						Value: 32163995,
+						Unit:  "val",
+					},
+				},
+			},
+		},
+		{
 			name:  "unit",
 			line:  "               1.11 msec task-clock                #    0.001 CPUs utilized",
 			match: true,

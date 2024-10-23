@@ -14,11 +14,11 @@ import (
 var (
 	// Unitless stat. Format:
 	//          1,291,018      cycles                    #    1.167 GHz
-	unitlessRe = regexp.MustCompile(`^\s*([0-9,\.]+)\s+([a-zA-Z0-9_\.:-]+)(\s+(#.*)?)?$`)
+	unitlessRe = regexp.MustCompile(`^\s*([0-9,\.]+)\s+([a-zA-Z0-9_\.:-]+)(\s+(\(.*%\))?)?(\s+(#.*)?)?$`)
 
 	// Stat with unit. Format:
-	//               1.11 msec task-clock                #    0.001 CPUs utilized
-	unitRe = regexp.MustCompile(`^\s*([0-9,\.]+)\s+([a-zA-Z]+)\s+([a-zA-Z0-9_\.:-]+)(\s+(#.*)?)?$`)
+	//               1.11 msec task-clock                (55.55%)  #    0.001 CPUs utilized
+	unitRe = regexp.MustCompile(`^\s*([0-9,\.]+)\s+([a-zA-Z]+)\s+([a-zA-Z0-9_\.:-]+)(\s+(\(.*%\))?)?(\s+(#.*)?)?$`)
 
 	// Total elapsed wall time. Format:
 	//      1656.917143299 seconds time elapsed
