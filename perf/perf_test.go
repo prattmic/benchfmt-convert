@@ -46,6 +46,21 @@ func TestPerf(t *testing.T) {
 			},
 		},
 		{
+			name:  "unitless-capital",
+			line:  "     2,651,008,697      L1-dcache-loads",
+			match: true,
+			want: benchfmt.Result{
+				FullName: []byte("L1-dcache-loads"),
+				Iters:    1,
+				Values: []benchfmt.Value{
+					{
+						Value: 2651008697,
+						Unit:  "val",
+					},
+				},
+			},
+		},
+		{
 			name:  "unit",
 			line:  "               1.11 msec task-clock                #    0.001 CPUs utilized",
 			match: true,

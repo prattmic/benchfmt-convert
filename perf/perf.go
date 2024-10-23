@@ -14,11 +14,11 @@ import (
 var (
 	// Unitless stat. Format:
 	//          1,291,018      cycles                    #    1.167 GHz
-	unitlessRe = regexp.MustCompile(`^\s*([0-9,\.]+)\s+([a-z0-9_\.:-]+)\s+(#.*)?$`)
+	unitlessRe = regexp.MustCompile(`^\s*([0-9,\.]+)\s+([a-zA-Z0-9_\.:-]+)(\s+(#.*)?)?$`)
 
 	// Stat with unit. Format:
 	//               1.11 msec task-clock                #    0.001 CPUs utilized
-	unitRe = regexp.MustCompile(`^\s*([0-9,\.]+)\s+([a-z]+)\s+([a-z0-9_\.:-]+)\s+(#.*)?$`)
+	unitRe = regexp.MustCompile(`^\s*([0-9,\.]+)\s+([a-zA-Z]+)\s+([a-zA-Z0-9_\.:-]+)(\s+(#.*)?)?$`)
 
 	// Total elapsed wall time. Format:
 	//      1656.917143299 seconds time elapsed
@@ -50,15 +50,7 @@ func capitalize(s string) string {
 func Line(s string) (benchfmt.Result, bool) {
 	var name, value, unit string
 
-	if m := unitlessRe.FindStringSubmatch(s); len(m) > 0 {
-		value = m[1]
-		unit = "val"
-		name = m[2]
-	} else if m := unitRe.FindStringSubmatch(s); len(m) > 0 {
-		value = m[1]
-		unit = m[2]
-		name = m[3]
-	} else if m := wallRe.FindStringSubmatch(s); len(m) > 0 {
+	if m := wallRe.FindStringSubmatch(s); len(m) > 0 {
 		value = m[1]
 		unit = "sec"
 		name = "wall-time"
@@ -70,6 +62,14 @@ func Line(s string) (benchfmt.Result, bool) {
 		value = m[1]
 		unit = "sec"
 		name = "system-time"
+	} else if m := unitlessRe.FindStringSubmatch(s); len(m) > 0 {
+		value = m[1]
+		unit = "val"
+		name = m[2]
+	} else if m := unitRe.FindStringSubmatch(s); len(m) > 0 {
+		value = m[1]
+		unit = m[2]
+		name = m[3]
 	}
 
 	if value == "" {
