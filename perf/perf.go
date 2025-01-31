@@ -12,7 +12,7 @@ import (
 	"strings"
 	"unicode"
 
-	"golang.org/x/perf/v2/benchfmt"
+	"golang.org/x/perf/benchfmt"
 )
 
 var (
@@ -95,8 +95,8 @@ func Line(s string) (benchfmt.Result, bool) {
 	}
 
 	r := benchfmt.Result{
-		FullName: []byte(capitalize(name)),
-		Iters:    1,
+		Name:  []byte(capitalize(name)),
+		Iters: 1,
 		Values: []benchfmt.Value{
 			{
 				Value: v,

@@ -101,7 +101,7 @@ import (
 
 	"github.com/prattmic/benchfmt-convert/gtest"
 	"github.com/prattmic/benchfmt-convert/perf"
-	"golang.org/x/perf/v2/benchfmt"
+	"golang.org/x/perf/benchfmt"
 )
 
 type parser func(string) (benchfmt.Result, bool)
