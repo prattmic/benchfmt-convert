@@ -10,7 +10,7 @@ import (
 	"regexp"
 	"strconv"
 
-	"golang.org/x/perf/v2/benchfmt"
+	"golang.org/x/perf/benchfmt"
 )
 
 var (
@@ -40,8 +40,8 @@ func Line(s string) (benchfmt.Result, bool) {
 	}
 
 	r := benchfmt.Result{
-		FullName: []byte(name),
-		Iters:    int(i),
+		Name:  []byte(name),
+		Iters: int(i),
 	}
 
 	wall := m[2]

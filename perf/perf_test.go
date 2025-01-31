@@ -9,7 +9,7 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
-	"golang.org/x/perf/v2/benchfmt"
+	"golang.org/x/perf/benchfmt"
 )
 
 func TestPerf(t *testing.T) {
@@ -24,8 +24,8 @@ func TestPerf(t *testing.T) {
 			line:  "          1,291,018      cycles                    #    1.167 GHz",
 			match: true,
 			want: benchfmt.Result{
-				FullName: []byte("Cycles"),
-				Iters:    1,
+				Name:  []byte("Cycles"),
+				Iters: 1,
 				Values: []benchfmt.Value{
 					{
 						Value: 1291018,
@@ -39,8 +39,8 @@ func TestPerf(t *testing.T) {
 			line:  "          1,291,018      cycles:u                    #    1.167 GHz",
 			match: true,
 			want: benchfmt.Result{
-				FullName: []byte("Cycles:u"),
-				Iters:    1,
+				Name:  []byte("Cycles:u"),
+				Iters: 1,
 				Values: []benchfmt.Value{
 					{
 						Value: 1291018,
@@ -54,8 +54,8 @@ func TestPerf(t *testing.T) {
 			line:  "     2,651,008,697      L1-dcache-loads",
 			match: true,
 			want: benchfmt.Result{
-				FullName: []byte("L1-dcache-loads"),
-				Iters:    1,
+				Name:  []byte("L1-dcache-loads"),
+				Iters: 1,
 				Values: []benchfmt.Value{
 					{
 						Value: 2651008697,
@@ -69,8 +69,8 @@ func TestPerf(t *testing.T) {
 			line:  "        32,163,995      L1-icache-load-misses                                                   (72.21%)",
 			match: true,
 			want: benchfmt.Result{
-				FullName: []byte("L1-icache-load-misses"),
-				Iters:    1,
+				Name:  []byte("L1-icache-load-misses"),
+				Iters: 1,
 				Values: []benchfmt.Value{
 					{
 						Value: 32163995,
@@ -84,8 +84,8 @@ func TestPerf(t *testing.T) {
 			line:  "               1.11 msec task-clock                #    0.001 CPUs utilized",
 			match: true,
 			want: benchfmt.Result{
-				FullName: []byte("Task-clock"),
-				Iters:    1,
+				Name:  []byte("Task-clock"),
+				Iters: 1,
 				Values: []benchfmt.Value{
 					{
 						Value: 0.00111,
@@ -99,8 +99,8 @@ func TestPerf(t *testing.T) {
 			line:  "               1.11 msec task-clock:u                #    0.001 CPUs utilized",
 			match: true,
 			want: benchfmt.Result{
-				FullName: []byte("Task-clock:u"),
-				Iters:    1,
+				Name:  []byte("Task-clock:u"),
+				Iters: 1,
 				Values: []benchfmt.Value{
 					{
 						Value: 0.00111,
@@ -114,8 +114,8 @@ func TestPerf(t *testing.T) {
 			line:  "      1656.917143299 seconds time elapsed",
 			match: true,
 			want: benchfmt.Result{
-				FullName: []byte("Wall-time"),
-				Iters:    1,
+				Name:  []byte("Wall-time"),
+				Iters: 1,
 				Values: []benchfmt.Value{
 					{
 						Value: 1656.917143299,
@@ -129,8 +129,8 @@ func TestPerf(t *testing.T) {
 			line:  "      1656.917143299 seconds user",
 			match: true,
 			want: benchfmt.Result{
-				FullName: []byte("User-time"),
-				Iters:    1,
+				Name:  []byte("User-time"),
+				Iters: 1,
 				Values: []benchfmt.Value{
 					{
 						Value: 1656.917143299,
@@ -144,8 +144,8 @@ func TestPerf(t *testing.T) {
 			line:  "      1656.917143299 seconds sys",
 			match: true,
 			want: benchfmt.Result{
-				FullName: []byte("System-time"),
-				Iters:    1,
+				Name:  []byte("System-time"),
+				Iters: 1,
 				Values: []benchfmt.Value{
 					{
 						Value: 1656.917143299,

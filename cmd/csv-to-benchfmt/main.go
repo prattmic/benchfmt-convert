@@ -11,7 +11,7 @@ import (
 	"os"
 	"strconv"
 
-	"golang.org/x/perf/v2/benchfmt"
+	"golang.org/x/perf/benchfmt"
 )
 
 func main() {
@@ -34,9 +34,9 @@ func main() {
 		}
 
 		r := benchfmt.Result{
-			FullName: []byte(record[0]),
-			Iters:    1,
-			Values:   make([]benchfmt.Value, 0),
+			Name:   []byte(record[0]),
+			Iters:  1,
+			Values: make([]benchfmt.Value, 0),
 		}
 		// Skip label and count.
 		for j := 2; j < len(record); j++ {

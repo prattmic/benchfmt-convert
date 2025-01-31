@@ -9,7 +9,7 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
-	"golang.org/x/perf/v2/benchfmt"
+	"golang.org/x/perf/benchfmt"
 )
 
 ///^BM_.*\s+[0-9]+\s+.*\s+[0-9]+\s+.*\s+[0-9]+$/ {
@@ -26,8 +26,8 @@ func TestGTest(t *testing.T) {
 			line:  "BM_Stat/64/real_time       16770 ns        16593 ns        42186",
 			match: true,
 			want: benchfmt.Result{
-				FullName: []byte("Stat/64/real_time"),
-				Iters:    42186,
+				Name:  []byte("Stat/64/real_time"),
+				Iters: 42186,
 				Values: []benchfmt.Value{
 					{
 						Value: 16770,
@@ -45,8 +45,8 @@ func TestGTest(t *testing.T) {
 			line:  "BM_Stat/64/real_time       16770 ns        16593 ns        42186  ",
 			match: true,
 			want: benchfmt.Result{
-				FullName: []byte("Stat/64/real_time"),
-				Iters:    42186,
+				Name:  []byte("Stat/64/real_time"),
+				Iters: 42186,
 				Values: []benchfmt.Value{
 					{
 						Value: 16770,
@@ -64,8 +64,8 @@ func TestGTest(t *testing.T) {
 			line:  "BM_LargeConsistent                 4.69           4.69   500000000  ",
 			match: true,
 			want: benchfmt.Result{
-				FullName: []byte("LargeConsistent"),
-				Iters:    500000000,
+				Name:  []byte("LargeConsistent"),
+				Iters: 500000000,
 				Values: []benchfmt.Value{
 					{
 						Value: 4.69,
@@ -83,8 +83,8 @@ func TestGTest(t *testing.T) {
 			line:  "BM_Read/1/real_time              3820 ns         2757 ns       184963 bytes_per_second=255.676k/s",
 			match: true,
 			want: benchfmt.Result{
-				FullName: []byte("Read/1/real_time"),
-				Iters:    184963,
+				Name:  []byte("Read/1/real_time"),
+				Iters: 184963,
 				Values: []benchfmt.Value{
 					{
 						Value: 3820,

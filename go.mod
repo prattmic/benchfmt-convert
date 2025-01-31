@@ -1,12 +1,10 @@
 module github.com/prattmic/benchfmt-convert
 
-go 1.17
-
-replace golang.org/x/perf/v2 => github.com/aclements/go-perf-v2/v2 v2.0.0-20201114230402-4cc84854ceef
+go 1.23.5
 
 require (
 	github.com/google/go-cmp v0.5.9
-	golang.org/x/perf/v2 v2.0.0-00010101000000-000000000000
+	golang.org/x/perf v0.0.0-20250106172127-400946f43c82
 )
 
-require golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543 // indirect
+require github.com/aclements/go-moremath v0.0.0-20210112150236-f10218a38794 // indirect
