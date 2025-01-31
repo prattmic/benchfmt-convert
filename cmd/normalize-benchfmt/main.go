@@ -6,8 +6,8 @@
 // benchmark formats to Go's [benchfmt], for use with tools like [benchstat].
 //
 // Supported input formats:
-// - Linux [perf stat] text output
-// - [Google Benchmark] C++ benchmarking framework
+//   - Linux [perf stat] text output
+//   - [Google Benchmark] C++ benchmarking framework
 //
 // normalize-benchfmt reads input from stdin or the file passed as the first
 // argument. It writes each input line to stdout unmodified unless it matches a
